@@ -5,7 +5,7 @@ using UnityEngine;
 public class Touching : MonoBehaviour
 {
     public LayerMask LayerMask;
-    private List<Collider> _touchingColliders = new List<Collider>();
+    public List<Collider> _touchingColliders = new List<Collider>();
 
     public bool IsTouching { get { return _touchingColliders.Count > 0; } }
 

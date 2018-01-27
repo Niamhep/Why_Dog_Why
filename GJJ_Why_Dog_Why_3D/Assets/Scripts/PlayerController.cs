@@ -1,4 +1,6 @@
 ﻿using Rewired;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public Touching Grounder;
     public Touching WallHugger;
+    public Touching ObjectGrabber;
+    public List<Collider> touchingColliders;
 
     public const float MaxHorizontalVelocity = 20f;
     public const float HorizontalAcceleration = 50f;
@@ -25,16 +29,23 @@ public class PlayerController : MonoBehaviour
     private bool _jumpDown;
     private bool _isGrounded;
     private bool _isTouchingWall;
+    private bool _isGrabbing;
     private bool _jumping;
 
     private void Start()
     {
         _player = ReInput.players.GetPlayer(PlayerNumber);
         _rigidbody = GetComponent<Rigidbody> ();
+        touchingColliders = ObjectGrabber._touchingColliders;
     }
 
     private void Update()
     {
+        // Object Grabbing
+        if (_isGrabbing && _player.GetButtonDown("Grab"))
+        {
+
+        }
         
         if(CanJump && _player.GetButtonDown("Jump"))
         {
@@ -58,6 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         _isGrounded = Grounder.IsTouching;
         _isTouchingWall = WallHugger.IsTouching;
+        _isGrabbing = ObjectGrabber.IsTouching;
 
         _horizontalVelocity = _rigidbody.velocity.x;
 
