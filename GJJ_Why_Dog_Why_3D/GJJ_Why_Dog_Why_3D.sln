@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GJJ_Why_Dog_Why_3D", "GJJ_Why_Dog_Why_3D.csproj", "{83DFD326-A357-CC8C-44CA-A735F6E91E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GJJ_Why_Dog_Why_3D.Editor", "GJJ_Why_Dog_Why_3D.Editor.csproj", "{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83DFD326-A357-CC8C-44CA-A735F6E91E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83DFD326-A357-CC8C-44CA-A735F6E91E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83DFD326-A357-CC8C-44CA-A735F6E91E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83DFD326-A357-CC8C-44CA-A735F6E91E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
