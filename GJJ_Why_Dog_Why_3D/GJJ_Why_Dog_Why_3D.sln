@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GJJ_Why_Dog_Why_3D", "GJJ_Why_Dog_Why_3D.csproj", "{83DFD326-A357-CC8C-44CA-A735F6E91E87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GJJ_Why_Dog_Why_3D.Editor", "GJJ_Why_Dog_Why_3D.Editor.csproj", "{7DCB6558-CC91-EFBD-F673-38DE0FD23F65}"
