@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Anchor : MonoBehaviour
+public class DebugAngle : MonoBehaviour
 {
 
     public float angle = 40f;
