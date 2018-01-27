@@ -11,11 +11,17 @@ public class Touching : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        _touchingColliders.Add(col);
+        if (LayerMask == (LayerMask | (1 << col.gameObject.layer)))
+        {
+            _touchingColliders.Add(col);
+        }
     }
 
     private void OnTriggerExit(Collider col)
     {
-        _touchingColliders.Remove(col);
+        if (LayerMask == (LayerMask | (1 << col.gameObject.layer)))
+        {
+            _touchingColliders.Remove(col);
+        }
     }
 }

@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
         if(CanJump && _player.GetButtonDown("Jump"))
         {
             _jumping = true;
