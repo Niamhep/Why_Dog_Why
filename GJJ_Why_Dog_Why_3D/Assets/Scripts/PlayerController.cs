@@ -41,12 +41,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Object Grabbing
         if (_isGrabbing && _player.GetButtonDown("Grab"))
         {
 
         }
-        
         if(CanJump && _player.GetButtonDown("Jump"))
         {
             _jumping = true;
