@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48186576, g: 0.6466128, b: 0.39443886, a: 1}
+  m_IndirectSpecularColor: {r: 0.48201466, g: 0.6453682, b: 0.39408895, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -581,6 +581,11 @@ Prefab:
     - target: {fileID: 1116679102245976, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862428488459690, guid: 2f772f38681290a439806c026ceeb9fb,
+        type: 2}
+      propertyPath: PlayerNumber
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
@@ -1158,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 802087e4730789246a947e1028740454, type: 2}
+  profile: {fileID: 11400000, guid: 8c95d936b96725240a606f6d82c2ae62, type: 2}
 --- !u!114 &1251710768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,15 +1717,6 @@ Prefab:
     - target: {fileID: 1116679102245976, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
       propertyPath: m_Name
       value: Player3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078737000624724, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114862428488459690, guid: 2f772f38681290a439806c026ceeb9fb,
-        type: 2}
-      propertyPath: PlayerNumber
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
