@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4756123885082536}
   - component: {fileID: 136569267663638584}
   - component: {fileID: 114900541842337942}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: ObjectGrabber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 4123939987667664}
   - component: {fileID: 136040480580289588}
   - component: {fileID: 114253266403412090}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wallhugger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 4360512932417384}
   - component: {fileID: 65445085313579538}
   - component: {fileID: 114366766429873100}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Grounder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 4294966527
+    m_Bits: 4294965503
   _touchingColliders: []
 --- !u!114 &114366766429873100
 MonoBehaviour:
@@ -2243,7 +2243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LayerMask:
     serializedVersion: 2
-    m_Bits: 4294966527
+    m_Bits: 4294965503
   _touchingColliders: []
 --- !u!114 &114796282125479674
 MonoBehaviour:

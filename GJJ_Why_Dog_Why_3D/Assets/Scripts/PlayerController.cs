@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour
     private bool _jumpDown;
     private bool _isGrounded;
     private bool _isTouchingWall;
-    private bool _isGrabbing;
+    private bool _hasGrabbableObjectInRange;
     private bool _jumping;
+
+    private Draggable _draggingObject;
 
     private void Start()
     {
@@ -48,9 +50,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (_isGrabbing && _player.GetButtonDown("Grab"))
-        {
+        _hasGrabbableObjectInRange = ObjectGrabber.IsTouching;
 
+        if (_draggingObject != null)
+        {
+            if (_player.GetButtonUp("Grab") || Vector3.Distance(_draggingObject.transform.position, transform.position) > 3)
+            {
+                _draggingObject.Release();
+                _draggingObject = null;
+            }
+        }
+        else
+        {
+            if (_hasGrabbableObjectInRange && _player.GetButton("Grab"))
+            {
+                foreach (Collider col in ObjectGrabber._touchingColliders)
+                {
+                    Draggable draggableObj = col.GetComponent<Draggable>();
+                    if (draggableObj != null && !draggableObj.IsBeingDragged)
+                    {
+                        _draggingObject = draggableObj;
+                        _draggingObject.Grab(_rigidbody);
+                    }
+                }
+            }
         }
 
         if(_player.GetButtonDown("Jump"))
@@ -104,7 +127,6 @@ public class PlayerController : MonoBehaviour
     {
         _isGrounded = Grounder.IsTouching;
         _isTouchingWall = WallHugger.IsTouching;
-        _isGrabbing = ObjectGrabber.IsTouching;
 
         _horizontalVelocity = _rigidbody.velocity.x;
 
