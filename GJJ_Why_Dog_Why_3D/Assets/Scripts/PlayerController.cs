@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public int PlayerNumber;
 
+    public AnimatorDriver AnimatorDriver;
     public Touching Grounder;
     public Touching WallHugger;
     public Touching ObjectGrabber;
@@ -27,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
     private Player _player;
     private Rigidbody _rigidbody;
-    private Renderer _renderer;
 
     private Vector2 _moveAxis;
     private float _horizontalVelocity;
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         _player = ReInput.players.GetPlayer(PlayerNumber);
         _rigidbody = GetComponent<Rigidbody> ();
-        _renderer = GetComponent<Renderer>();
     }
 
     private void Update()
@@ -88,13 +87,14 @@ public class PlayerController : MonoBehaviour
 
         _moveAxis = _player.GetAxis2D("MoveX", "MoveY");
 
-        if(_isGrounded)
+        AnimatorDriver.Speed = Mathf.Abs(_horizontalVelocity) / MaxHorizontalVelocity;
+        if(_horizontalVelocity < -0.1f)
         {
-            _renderer.material.color = Color.green;
+            AnimatorDriver.transform.localScale = new Vector3(1, 1, -1);
         }
-        else
+        else if (_horizontalVelocity > 0.1f)
         {
-            _renderer.material.color = Color.red;
+            AnimatorDriver.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 

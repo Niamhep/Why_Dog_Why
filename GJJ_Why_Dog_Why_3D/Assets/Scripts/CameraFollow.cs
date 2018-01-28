@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        _playerBoundingBox = new Bounds();
+        _playerBoundingBox = new Bounds(Players[0].position, Vector3.zero);
 
         for(int i=0; i<Players.Count; i++)
         {
