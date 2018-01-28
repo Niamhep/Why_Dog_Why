@@ -7,7 +7,7 @@ public class Signal : MonoBehaviour
     public LayerMask LayerMask;
     private LineRenderer _lineRenderer;
 
-    private const float Width = 0.2f;
+    private const float Width = 0.1f;
     private const float MaxDistance = 100f;
 
     private void Start()
@@ -19,53 +19,59 @@ public class Signal : MonoBehaviour
     {
         List<Vector3> points = new List<Vector3>();
         points.Add(transform.position);
-        DoRaycastsRecursive(relay, ref points);
-
-        Debug.Log(points.Count);
+        List<Relay> relays = new List<Relay>();
+        DoRaycastsRecursive(relay, ref points, ref relays);
 
         _lineRenderer.positionCount = points.Count;
         _lineRenderer.SetPositions(points.ToArray());
     }
 
-    private void DoRaycastsRecursive(Transform relay, ref List<Vector3> points)
+    private void DoRaycastsRecursive(Transform relay, ref List<Vector3> points, ref List<Relay> relays)
     {
-        Ray raycast = new Ray(relay.position, relay.forward);
-        List<RaycastHit> firstRayCast = new List<RaycastHit>(Physics.RaycastAll(raycast, MaxDistance, LayerMask));
+        Ray raycast = new Ray(relay.position, relay.forward * MaxDistance);
 
-        if (firstRayCast.Count > 0)
+
+        RaycastHit hit;
+        if(Physics.Raycast(raycast, out hit, MaxDistance, LayerMask))
         {
-            OnRaycastHit(firstRayCast[0], ref points);
+            OnRaycastHit(hit, ref points, ref relays);
             return;
         }
 
         raycast = new Ray(relay.position + relay.right * Width, relay.forward);
-        List<RaycastHit> secondRayCast = new List<RaycastHit>(Physics.RaycastAll(raycast, MaxDistance, LayerMask));
-
-        if (secondRayCast.Count > 0)
+        if (Physics.Raycast(raycast, out hit, MaxDistance, LayerMask))
         {
-            OnRaycastHit(secondRayCast[0], ref points);
+            OnRaycastHit(hit, ref points, ref relays);
             return;
         }
 
         raycast = new Ray(relay.position - relay.right * Width, relay.forward);
-        List<RaycastHit> thirdRayCast = new List<RaycastHit>(Physics.RaycastAll(raycast, MaxDistance, LayerMask));
-
-        if (thirdRayCast.Count > 0)
+        if (Physics.Raycast(raycast, out hit, MaxDistance, LayerMask))
         {
-            OnRaycastHit(thirdRayCast[0], ref points);
+            OnRaycastHit(hit, ref points, ref relays);
             return;
         }
     }
 
-    private void OnRaycastHit(RaycastHit hit, ref List<Vector3> points)
+    private void OnRaycastHit(RaycastHit hit, ref List<Vector3> points, ref List<Relay> relays)
     {
-        Debug.Log("Hit: " + hit.point);
         points.Add(hit.point);
+
+        PlayerController player = hit.transform.GetComponent<PlayerController>();
+        if(player != null)
+        {
+            player.Kill();
+            return;
+        }
 
         Relay relayHit = hit.transform.GetComponent<Relay>();
         if(relayHit != null)
         {
-            DoRaycastsRecursive(relayHit.SignalSpawnPoint, ref points);
+            if (!relays.Contains(relayHit) && !relayHit.SpawnSignal)
+            {
+                relays.Add(relayHit);
+                DoRaycastsRecursive(relayHit.SignalSpawnPoint, ref points, ref relays);
+            }
         }
     }
 

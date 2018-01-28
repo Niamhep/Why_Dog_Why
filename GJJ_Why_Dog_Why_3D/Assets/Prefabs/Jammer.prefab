@@ -58,7 +58,8 @@ GameObject:
   - component: {fileID: 4238360364479836}
   - component: {fileID: 33211586918892396}
   - component: {fileID: 23062168932615956}
-  m_Layer: 9
+  - component: {fileID: 135859303431442232}
+  m_Layer: 11
   m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,13 +266,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405336423194884}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_Drag: 2
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!65 &65984203183541652
 BoxCollider:
@@ -296,3 +297,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162e237c81703c14eb6ea56c1c63a191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135859303431442232
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616003568270198}
+  m_Material: {fileID: 13400000, guid: 1c125104c22620943bb95bf5bb7e0122, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

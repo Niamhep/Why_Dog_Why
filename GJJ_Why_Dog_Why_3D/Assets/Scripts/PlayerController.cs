@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _moveAxis = _player.GetAxis2D("MoveX", "MoveY");
+
         _hasGrabbableObjectInRange = ObjectGrabber.IsTouching;
 
         if (_draggingObject != null)
@@ -66,11 +68,21 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (Collider col in ObjectGrabber._touchingColliders)
                 {
+                    SatelliteController satelliteController = col.GetComponent<SatelliteController>();
+
+                    if (satelliteController != null)
+                    {
+                        satelliteController.Move(_moveAxis);
+                        _moveAxis = Vector2.zero;
+                        break;
+                    }
+
                     Draggable draggableObj = col.GetComponent<Draggable>();
                     if (draggableObj != null && !draggableObj.IsBeingDragged)
                     {
                         _draggingObject = draggableObj;
                         _draggingObject.Grab(_rigidbody);
+                        break;
                     }
                 }
             }
@@ -107,8 +119,6 @@ public class PlayerController : MonoBehaviour
             _jumping = false;
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, Mathf.Min(_rigidbody.velocity.y, 0), _rigidbody.velocity.z);
         }
-
-        _moveAxis = _player.GetAxis2D("MoveX", "MoveY");
 
         AnimatorDriver.Speed = Mathf.Abs(_horizontalVelocity) / MaxHorizontalVelocity;
         if(_horizontalVelocity < -0.1f)
@@ -188,5 +198,10 @@ public class PlayerController : MonoBehaviour
 
         _rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
         //_rigidbody.velocity = new Vector3(_horizontalVelocity, _rigidbody.velocity.y, 0);
+    }
+
+    public void Kill()
+    {
+
     }
 }
