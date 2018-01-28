@@ -10,24 +10,24 @@ public class PlayerController : MonoBehaviour
     public Touching Grounder;
     public Touching WallHugger;
     public Touching ObjectGrabber;
-    public List<Collider> touchingColliders;
 
     public const float MaxHorizontalVelocity = 20f;
-    public const float HorizontalAcceleration = 200f;
-    public const float HorizontalAccelerationStageTwo = 20f;
+    public const float HorizontalAcceleration = 100f;
+    public const float HorizontalAccelerationStageTwo = 30f;
     public const float HorizontalAccelerationThreshold = 14f;
     public const float HorizontalDeceleration = 200f;
 
-    public const float HorizontalAccelerationAir = 20f;
-    public const float HorizontalAccelerationAirStageTwo = 10f;
+    public const float HorizontalAccelerationAir = 30f;
+    public const float HorizontalAccelerationAirStageTwo = 15f;
     public const float HorizontalDecelerationAir = 40f;
     public const float GroundRaycastLength = 0.1f;
 
-    public const float JumpVelocity = 20;
-    public const float WallJumpVelocity = 12;
+    public const float JumpVelocity = 18;
+    public const float WallJumpVelocity = 10;
 
     private Player _player;
     private Rigidbody _rigidbody;
+    private Renderer _renderer;
 
     private Vector2 _moveAxis;
     private float _horizontalVelocity;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         _player = ReInput.players.GetPlayer(PlayerNumber);
         _rigidbody = GetComponent<Rigidbody> ();
-        touchingColliders = ObjectGrabber._touchingColliders;
+        _renderer = GetComponent<Renderer>();
     }
 
     private void Update()
@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         {
             if (CanJump)
             {
-                Debug.Log("Normal");
                 _jumping = true;
                 _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, JumpVelocity, _rigidbody.velocity.z);
             }
@@ -72,8 +71,9 @@ public class PlayerController : MonoBehaviour
                     if(Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
                     {
                         _jumping = true;
-                        _horizontalVelocity += -Mathf.Sign(normal.x) * WallJumpVelocity;
+                        _horizontalVelocity = -Mathf.Sign(normal.x) * WallJumpVelocity;
                         _rigidbody.velocity = new Vector3(_horizontalVelocity, JumpVelocity, _rigidbody.velocity.z);
+
                         break;
                     }
                 }
@@ -88,6 +88,14 @@ public class PlayerController : MonoBehaviour
 
         _moveAxis = _player.GetAxis2D("MoveX", "MoveY");
 
+        if(_isGrounded)
+        {
+            _renderer.material.color = Color.green;
+        }
+        else
+        {
+            _renderer.material.color = Color.red;
+        }
     }
 
     private Ray _groundRaycast;
@@ -155,6 +163,5 @@ public class PlayerController : MonoBehaviour
         _horizontalVelocity = Mathf.Clamp(_horizontalVelocity, -MaxHorizontalVelocity, MaxHorizontalVelocity);
 
         _rigidbody.velocity = new Vector3(_horizontalVelocity, _rigidbody.velocity.y, 0);
-
     }
 }

@@ -331,15 +331,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 54672721986053768, guid: 2f772f38681290a439806c026ceeb9fb,
-        type: 2}
-      propertyPath: m_Drag
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 65445085313579538, guid: 2f772f38681290a439806c026ceeb9fb,
         type: 2}
-      propertyPath: m_Size.x
-      value: 0.1
+      propertyPath: m_Size.y
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f772f38681290a439806c026ceeb9fb, type: 2}
@@ -415,7 +410,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853402114}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1c125104c22620943bb95bf5bb7e0122, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -791,7 +786,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1908749526}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1c125104c22620943bb95bf5bb7e0122, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
