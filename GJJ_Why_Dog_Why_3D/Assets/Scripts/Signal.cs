@@ -8,9 +8,9 @@ public class Signal : MonoBehaviour
     private LineRenderer _lineRenderer;
 
     private const float Width = 0.1f;
-    private const float MaxDistance = 100f;
+    private const float MaxDistance = 200f;
 
-    private void Start()
+    private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
     }
@@ -51,11 +51,20 @@ public class Signal : MonoBehaviour
             OnRaycastHit(hit, ref points, ref relays);
             return;
         }
+
+        points.Add(relay.position + relay.forward * MaxDistance);
     }
 
     private void OnRaycastHit(RaycastHit hit, ref List<Vector3> points, ref List<Relay> relays)
     {
         points.Add(hit.point);
+
+        Tower tower = hit.transform.GetComponent<Tower>();
+        if (tower != null)
+        {
+            tower.Win();
+            return;
+        }
 
         PlayerController player = hit.transform.GetComponent<PlayerController>();
         if(player != null)

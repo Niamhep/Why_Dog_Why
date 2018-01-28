@@ -13,7 +13,7 @@ public class Draggable : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private const float DragForce = 2000;
-    private const float TargetVelocityForce = 150;
+    private const float TargetVelocityForce = 300;
     private const float DragDamping = 300;
 
     private void Start()

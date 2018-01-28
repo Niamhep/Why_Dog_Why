@@ -10,11 +10,11 @@ public class CameraFollow : MonoBehaviour
     public float NormalisedZoom { get { return Mathf.Clamp01((transform.position.z - MinZ) / (MaxZ - MinZ)); } }
 
     private const float MinZ = -70f;
-    private const float MaxZ = -160f;
+    private const float MaxZ = -220f;
 
     private const float CameraDampTime = 0.6f;
     private const float ZoomSpeed = 100f;
-    private const float Padding = 4;
+    private const float Padding = 8;
     private const float LookAheadMultiplier = 0.4f;
 
     private Camera _camera;
@@ -44,8 +44,11 @@ public class CameraFollow : MonoBehaviour
 
         for(int i=0; i<Players.Count; i++)
         {
-            _playerBoundingBox.Encapsulate(Players[i].position);
-            _playerBoundingBox.Encapsulate(Players[i].position +(_playerRigidbodies[i].velocity * LookAheadMultiplier));
+            if (Players[i].gameObject.activeSelf)
+            {
+                _playerBoundingBox.Encapsulate(Players[i].position);
+                _playerBoundingBox.Encapsulate(Players[i].position + (_playerRigidbodies[i].velocity * LookAheadMultiplier));
+            }
         }
 
 #if DEBUG

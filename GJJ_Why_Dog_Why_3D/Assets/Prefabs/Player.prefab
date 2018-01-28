@@ -1595,8 +1595,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116679102245976}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.21, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.9, y: -2.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4360512932417384}
@@ -2267,7 +2267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e225f3c516ff72046879c96b948d99da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerNumber: 2
+  PlayerNumber: 0
+  ParticleEffect: {fileID: 1019839787312266, guid: 5fac10ea1fa99c146a63c06109fcccc8,
+    type: 2}
   AnimatorDriver: {fileID: 114796282125479674}
   Grounder: {fileID: 114366766429873100}
   WallHugger: {fileID: 114253266403412090}
@@ -2438,7 +2440,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c06ddece1cbc7bc4e966fa4dc9368843, type: 2}
+  - {fileID: 2100000, guid: c8a59b8ec98660d43b3581b728908109, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

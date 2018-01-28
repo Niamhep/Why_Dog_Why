@@ -12,7 +12,7 @@ public class SatelliteController : MonoBehaviour
     {
         if(Satellite != null)
         {
-            Satellite.Rotate(new Vector3(0, 0, axis.x * RotateSpeed * Time.deltaTime));
+            Satellite.Rotate(new Vector3(0, 0, -axis.x * RotateSpeed * Time.deltaTime));
         }
     }
 }

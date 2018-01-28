@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public int PlayerNumber;
 
+    public GameObject ParticleEffect;
+
     public AnimatorDriver AnimatorDriver;
     public Touching Grounder;
     public Touching WallHugger;
@@ -202,6 +204,14 @@ public class PlayerController : MonoBehaviour
 
     public void Kill()
     {
+        Instantiate(ParticleEffect, transform.position, Quaternion.identity);
 
+        if (_draggingObject != null)
+        {
+            _draggingObject.Release();
+            _draggingObject = null;
+        }
+
+        gameObject.SetActive(false);
     }
 }
