@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public const float HorizontalDecelerationAir = 40f;
     public const float GroundRaycastLength = 0.1f;
 
-    public const float JumpVelocity = 18;
+    public const float JumpVelocity = 24;
     public const float WallJumpVelocity = 10;
 
     private Player _player;

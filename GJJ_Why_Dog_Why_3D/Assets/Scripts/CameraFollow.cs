@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour
         }
 
 #if DEBUG
-        DrawBounds(_playerBoundingBox, Color.yellow);
+        //DrawBounds(_playerBoundingBox, Color.yellow);
 #endif
 
         Vector3[] frustumCorners = new Vector3[4];
@@ -63,7 +63,7 @@ public class CameraFollow : MonoBehaviour
         }
 
 #if DEBUG
-        DrawBounds(_cameraViewBoundingBox, Color.blue);
+        //DrawBounds(_cameraViewBoundingBox, Color.blue);
 #endif
         //
 
