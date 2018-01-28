@@ -16,13 +16,23 @@ public class ParalaxBackground : MonoBehaviour
     private void Start()
     {
         _renderer = GetComponent<Renderer>();
-        _lastTrackedPosition = TrackingObject.transform.position;
+        if (TrackingObject != null)
+        {
+            _lastTrackedPosition = TrackingObject.transform.position;
+        }
     }
 
     void LateUpdate()
     {
-        _trackedMovement = TrackingObject.position - _lastTrackedPosition;
-        _lastTrackedPosition = TrackingObject.position;
+        if (TrackingObject != null)
+        {
+            _trackedMovement = TrackingObject.position - _lastTrackedPosition;
+            _lastTrackedPosition = TrackingObject.position;
+        }
+        else
+        {
+            _trackedMovement = Vector2.one;
+        }
 
         uvOffset += (new Vector2(uvAnimationRate.x * _trackedMovement.x, uvAnimationRate.y * _trackedMovement.y) * Time.deltaTime);
         uvOffset.x = uvOffset.x % 1;

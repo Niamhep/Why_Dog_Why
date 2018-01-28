@@ -7,7 +7,7 @@ public class AnimatorDriver : MonoBehaviour
     private Animator _animator;
     private const string SpeedParam = "Speed";
 
-    private void Update()
+    private void Start()
     {
         _animator = GetComponent<Animator>();
     }

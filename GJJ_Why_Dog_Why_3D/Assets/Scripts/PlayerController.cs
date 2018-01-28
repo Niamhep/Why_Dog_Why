@@ -162,6 +162,9 @@ public class PlayerController : MonoBehaviour
 
         _horizontalVelocity = Mathf.Clamp(_horizontalVelocity, -MaxHorizontalVelocity, MaxHorizontalVelocity);
 
-        _rigidbody.velocity = new Vector3(_horizontalVelocity, _rigidbody.velocity.y, 0);
+        Vector3 velocityChange = new Vector3(_horizontalVelocity, _rigidbody.velocity.y, 0) - _rigidbody.velocity;
+
+        _rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+        //_rigidbody.velocity = new Vector3(_horizontalVelocity, _rigidbody.velocity.y, 0);
     }
 }

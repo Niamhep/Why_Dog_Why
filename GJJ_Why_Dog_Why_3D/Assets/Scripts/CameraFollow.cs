@@ -55,7 +55,7 @@ public class CameraFollow : MonoBehaviour
         Vector3[] frustumCorners = new Vector3[4];
         _camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), zoom, Camera.MonoOrStereoscopicEye.Mono, frustumCorners);
 
-        _cameraViewBoundingBox = new Bounds();
+        _cameraViewBoundingBox = new Bounds(transform.TransformPoint(frustumCorners[0]), Vector3.zero);
 
         foreach (Vector3 corner in frustumCorners)
         {
