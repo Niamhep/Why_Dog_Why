@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private bool _isTouchingWall;
     private bool _hasGrabbableObjectInRange;
     private bool _jumping;
+    private int _jumpFrames;
 
     private Draggable _draggingObject;
 
@@ -56,6 +57,16 @@ public class PlayerController : MonoBehaviour
 
         _hasGrabbableObjectInRange = ObjectGrabber.IsTouching;
 
+        AnimatorDriver.Speed = Mathf.Abs(_horizontalVelocity) / MaxHorizontalVelocity;
+        if (_horizontalVelocity < -0.1f)
+        {
+            AnimatorDriver.transform.localScale = new Vector3(1, 1, -1);
+        }
+        else if (_horizontalVelocity > 0.1f)
+        {
+            AnimatorDriver.transform.localScale = new Vector3(1, 1, 1);
+        }
+
         if (_draggingObject != null)
         {
             if (_player.GetButtonUp("Grab") || Vector3.Distance(_draggingObject.transform.position, transform.position) > 3)
@@ -63,6 +74,8 @@ public class PlayerController : MonoBehaviour
                 _draggingObject.Release();
                 _draggingObject = null;
             }
+
+            return;
         }
         else
         {
@@ -70,11 +83,22 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (Collider col in ObjectGrabber._touchingColliders)
                 {
+
+                    //TODO: These should use inheritence so we only have to look for 1 type!
                     SatelliteController satelliteController = col.GetComponent<SatelliteController>();
 
                     if (satelliteController != null)
                     {
                         satelliteController.Move(_moveAxis);
+                        _moveAxis = Vector2.zero;
+                        break;
+                    }
+
+                    MoverController moverController = col.GetComponent<MoverController>();
+
+                    if (moverController != null)
+                    {
+                        moverController.Move(_moveAxis);
                         _moveAxis = Vector2.zero;
                         break;
                     }
@@ -95,6 +119,7 @@ public class PlayerController : MonoBehaviour
             if (CanJump)
             {
                 _jumping = true;
+                _jumpFrames = 3;
                 _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, JumpVelocity, _rigidbody.velocity.z);
             }
             else if (_isTouchingWall)
@@ -107,6 +132,7 @@ public class PlayerController : MonoBehaviour
                     if(Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
                     {
                         _jumping = true;
+                        _jumpFrames = 3;
                         _horizontalVelocity = -Mathf.Sign(normal.x) * WallJumpVelocity;
                         _rigidbody.velocity = new Vector3(_horizontalVelocity, JumpVelocity, _rigidbody.velocity.z);
 
@@ -119,17 +145,8 @@ public class PlayerController : MonoBehaviour
         if(_jumping && _player.GetButtonUp("Jump"))
         {
             _jumping = false;
+            _jumpFrames = 0;
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, Mathf.Min(_rigidbody.velocity.y, 0), _rigidbody.velocity.z);
-        }
-
-        AnimatorDriver.Speed = Mathf.Abs(_horizontalVelocity) / MaxHorizontalVelocity;
-        if(_horizontalVelocity < -0.1f)
-        {
-            AnimatorDriver.transform.localScale = new Vector3(1, 1, -1);
-        }
-        else if (_horizontalVelocity > 0.1f)
-        {
-            AnimatorDriver.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -141,6 +158,12 @@ public class PlayerController : MonoBehaviour
         _isTouchingWall = WallHugger.IsTouching;
 
         _horizontalVelocity = _rigidbody.velocity.x;
+
+        if (_jumpFrames > 0)
+        {
+            _jumpFrames--;
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, JumpVelocity, _rigidbody.velocity.z);
+        }
 
         if (Mathf.Abs(_moveAxis.x) > 0.2f)
         {

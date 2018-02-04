@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     public float NormalisedZoom { get { return Mathf.Clamp01((transform.position.z - MinZ) / (MaxZ - MinZ)); } }
 
-    private const float MinZ = -70f;
+    private const float MinZ = -90f;
     private const float MaxZ = -220f;
 
     private const float CameraDampTime = 0.6f;

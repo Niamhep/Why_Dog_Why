@@ -16,6 +16,10 @@ public class Draggable : MonoBehaviour
     private const float TargetVelocityForce = 300;
     private const float DragDamping = 300;
 
+    public GameObject TutorialCanvas;
+
+    private bool _firstPickup = true;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -23,6 +27,10 @@ public class Draggable : MonoBehaviour
 
     public void Grab(Rigidbody target)
     {
+        if(_firstPickup)
+        {
+            TutorialCanvas.SetActive(false);
+        }
         IsBeingDragged = true;
         _target = target;
     }

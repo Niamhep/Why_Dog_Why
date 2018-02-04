@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 224577400336653812}
   - component: {fileID: 222514983620115974}
   - component: {fileID: 114847950257502494}
-  - component: {fileID: 114910953098196564}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -80,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114157543453739366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,17 +185,6 @@ MonoBehaviour:
   m_Text: 'WIN
 
 '
---- !u!114 &114910953098196564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653085708378850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22bbf57ec543cee42a5aa0ec2dd9e457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114996314331838862
 MonoBehaviour:
   m_ObjectHideFlags: 1
